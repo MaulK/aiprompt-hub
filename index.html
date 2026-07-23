@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="PromptVault - A curated collection of 1155+ AI prompts for professionals. Browse, search, filter, and manage prompts across 11 categories.">
+  <meta name="description" content="PromptVault - A curated collection of 12,000+ AI prompts for professionals. Browse, search, filter, and manage prompts across 11 categories.">
   <meta name="keywords" content="AI prompts, ChatGPT, Claude, prompt engineering, prompt library">
   <meta name="author" content="@MaulK">
   <meta name="theme-color" content="#10B981">
   <meta property="og:title" content="PromptVault - AI Prompt Hub">
-  <meta property="og:description" content="1155+ curated AI prompts for professionals. Browse, search, and manage prompts across 11 categories.">
+  <meta property="og:description" content="12,000+ curated AI prompts for professionals. Browse, search, and manage prompts across 11 categories.">
   <meta property="og:type" content="website">
   <title>PromptVault - AI Prompt Hub</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -18,6 +18,21 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen" style="position:fixed;inset:0;background:var(--bg-primary);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity 0.5s ease,transform 0.5s ease;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--accent),var(--cyan));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#000;">P</div>
+      <span style="font-size:28px;font-weight:700;color:var(--text-primary);">PromptVault</span>
+    </div>
+    <div style="text-align:center;">
+      <div id="loadingText" style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Loading prompt library...</div>
+      <div style="width:280px;height:4px;background:var(--bg-tertiary);border-radius:4px;overflow:hidden;">
+        <div id="loadingBar" style="height:100%;width:10%;background:linear-gradient(90deg,var(--accent),var(--cyan));border-radius:4px;transition:width 0.4s ease;"></div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--text-muted);">12,155 prompts across 11 categories</div>
+  </div>
 
   <!-- Header -->
   <header class="header" role="banner">
@@ -149,6 +164,7 @@
         </div>
 
         <div class="prompt-grid" id="promptGrid" role="list"></div>
+        <div id="pagination" style="display:none;"></div>
 
         <div class="empty-state" id="emptyState" style="display:none;">
           <div class="empty-icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
@@ -320,7 +336,6 @@
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
 
-  <script src="js/data.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
