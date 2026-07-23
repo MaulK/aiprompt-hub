@@ -1,0 +1,41 @@
+{
+  "name": "promptvault",
+  "version": "2.0.0",
+  "description": "A curated collection of 1155+ AI prompts for professionals",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "python3 -m http.server 8000 || npx serve .",
+    "lint": "echo 'No linter configured'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [
+    "ai",
+    "prompts",
+    "chatgpt",
+    "claude",
+    "prompt-engineering",
+    "ai-prompts",
+    "prompt-library",
+    "vanilla-js"
+  ],
+  "author": "@MaulK",
+  "license": "MIT",
+  "homepage": "https://github.com/MaulK/aiprompt-hub#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MaulK/aiprompt-hub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MaulK/aiprompt-hub/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
