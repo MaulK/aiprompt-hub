@@ -129,6 +129,16 @@
     // THEME
     // =====================================================
     function applyTheme(theme) {
+      if (document.startViewTransition) {
+        document.startViewTransition(function() {
+          updateThemeDOM(theme);
+        });
+      } else {
+        updateThemeDOM(theme);
+      }
+    }
+
+    function updateThemeDOM(theme) {
       document.documentElement.dataset.theme = theme;
       state.theme = theme;
       save('theme', theme);
