@@ -471,6 +471,41 @@
           showToast('Collection created');
         }
       });
+      
+      el.collectionsContent.querySelectorAll('[data-cv]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var idx = parseInt(btn.dataset.cv);
+          var col = state.collections[idx];
+          if (col && col.promptIds.length > 0) {
+            state.view = 'all';
+            state.search = '';
+            el.searchInput.value = '';
+            // reset filters
+            state.filters = { category: [], sector: [], model: [], difficulty: [], rating: [] };
+            renderFilters();
+            // view only collection prompts
+            var colPrompts = prompts.filter(p => col.promptIds.includes(p.id));
+            updateFilterCounts(colPrompts);
+            renderGrid(colPrompts);
+            el.resultsCounter.innerHTML = 'Showing <strong>' + colPrompts.length + '</strong> prompts in ' + esc(col.name);
+            el.collectionsPanel.classList.remove('open');
+          } else {
+            showToast('Collection is empty', 'info');
+          }
+        });
+      });
+
+      el.collectionsContent.querySelectorAll('[data-cd]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var idx = parseInt(btn.dataset.cd);
+          if (confirm('Delete collection "' + state.collections[idx].name + '"?')) {
+            state.collections.splice(idx, 1);
+            save('collections', state.collections);
+            renderCollections();
+            showToast('Collection deleted');
+          }
+        });
+      });
     }
 
     // =====================================================
@@ -727,6 +762,15 @@
         state.viewMode = next;
         document.querySelectorAll('.view-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.view === next); });
         render();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (el.analyticsPanel.classList.contains('open') && !el.analyticsPanel.contains(e.target) && !el.analyticsBtn.contains(e.target)) {
+        el.analyticsPanel.classList.remove('open');
+      }
+      if (el.collectionsPanel.classList.contains('open') && !el.collectionsPanel.contains(e.target) && !el.collectionsBtn.contains(e.target)) {
+        el.collectionsPanel.classList.remove('open');
       }
     });
 
