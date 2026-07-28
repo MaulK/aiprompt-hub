@@ -22,7 +22,12 @@
   <!-- Loading Screen -->
   <div id="loadingScreen" style="position:fixed;inset:0;background:var(--bg-primary);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity 0.5s ease,transform 0.5s ease;">
     <div style="display:flex;align-items:center;gap:12px;">
-      <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--accent),var(--cyan));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#000;">P</div>
+      <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--accent),var(--cyan));border-radius:12px;display:flex;align-items:center;justify-content:center;color:#000;">
+        <svg viewBox="0 0 32 32" style="width:100%;height:100%;fill:currentColor;">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M9 8h6a4 4 0 0 1 0 8h-3v8h-3V8zm3 3v2h3a1 1 0 0 0 0-2h-3z"/>
+          <path d="M23 3.5c0 2-1.5 3.5-4 3.5 2.5 0 4 1.5 4 3.5 0-2 1.5-3.5 4-3.5-2.5 0-4-1.5-4-3.5z"/>
+        </svg>
+      </div>
       <span style="font-size:28px;font-weight:700;color:var(--text-primary);">PromptVault</span>
     </div>
     <div style="text-align:center;">
@@ -38,9 +43,15 @@
   <header class="header" role="banner">
     <div class="header-left">
       <a href="#" class="logo" aria-label="PromptVault Home">
-        <div class="logo-icon">P</div>
-        PromptVault by MaulK
+        <div class="logo-icon">
+          <svg viewBox="0 0 32 32" style="width:100%;height:100%;fill:currentColor;">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 8h6a4 4 0 0 1 0 8h-3v8h-3V8zm3 3v2h3a1 1 0 0 0 0-2h-3z"/>
+            <path d="M23 3.5c0 2-1.5 3.5-4 3.5 2.5 0 4 1.5 4 3.5 0-2 1.5-3.5 4-3.5-2.5 0-4-1.5-4-3.5z"/>
+          </svg>
+        </div>
+        PromptVault
       </a>
+      <span class="author-credit">by <a href="https://github.com/MaulK" target="_blank" rel="noopener noreferrer">MaulK</a></span>
       <span class="prompt-counter" id="promptCounter" aria-live="polite"></span>
     </div>
     <div class="header-center">
@@ -338,6 +349,26 @@
   <!-- Toast Container -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
+
+  <!-- Bottom Nav for Mobile -->
+  <nav class="bottom-nav">
+    <button class="bottom-nav-btn active" id="botNavAll" aria-label="Browse Prompts">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <span>Browse</span>
+    </button>
+    <button class="bottom-nav-btn" id="botNavSaved" aria-label="Saved Prompts">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+      <span>Saved</span>
+    </button>
+    <button class="bottom-nav-btn" id="botNavCompare" aria-label="Compare Prompts">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 21l6-6M9 8l-5 5M4 13v5h5"/></svg>
+      <span>Compare</span>
+    </button>
+    <button class="bottom-nav-btn" id="botNavGenerator" aria-label="Generate Prompts">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      <span>Create</span>
+    </button>
+  </nav>
 
   <script src="js/app.js"></script>
 </body>

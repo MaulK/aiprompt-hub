@@ -105,7 +105,11 @@ const el = {
   genCopyBtn: document.getElementById('genCopyBtn'),
   genSaveBtn: document.getElementById('genSaveBtn'),
   pagination: document.getElementById('pagination'),
-  loadingScreen: document.getElementById('loadingScreen')
+  loadingScreen: document.getElementById('loadingScreen'),
+  botNavAll: document.getElementById('botNavAll'),
+  botNavSaved: document.getElementById('botNavSaved'),
+  botNavCompare: document.getElementById('botNavCompare'),
+  botNavGenerator: document.getElementById('botNavGenerator')
 };
 
 // =====================================================
@@ -284,10 +288,15 @@ function render() {
 
 function updateNav() {
   [el.navAll, el.navSaved, el.navCompare, el.navGenerator].forEach(function(b) { b.classList.remove('active'); });
-  if (state.view === 'all') el.navAll.classList.add('active');
-  else if (state.view === 'saved') el.navSaved.classList.add('active');
-  else if (state.view === 'compare') el.navCompare.classList.add('active');
-  else if (state.view === 'generator') el.navGenerator.classList.add('active');
+  if (el.botNavAll) {
+    [el.botNavAll, el.botNavSaved, el.botNavCompare, el.botNavGenerator].forEach(function(b) { b.classList.remove('active'); });
+  }
+
+  if (state.view === 'all') { el.navAll.classList.add('active'); if (el.botNavAll) el.botNavAll.classList.add('active'); }
+  else if (state.view === 'saved') { el.navSaved.classList.add('active'); if (el.botNavSaved) el.botNavSaved.classList.add('active'); }
+  else if (state.view === 'compare') { el.navCompare.classList.add('active'); if (el.botNavCompare) el.botNavCompare.classList.add('active'); }
+  else if (state.view === 'generator') { el.navGenerator.classList.add('active'); if (el.botNavGenerator) el.botNavGenerator.classList.add('active'); }
+  
   el.viewAll.style.display = (state.view === 'all' || state.view === 'saved') ? 'block' : 'none';
   el.viewCompare.style.display = state.view === 'compare' ? 'block' : 'none';
   el.viewGenerator.style.display = state.view === 'generator' ? 'block' : 'none';
@@ -704,6 +713,11 @@ function bindEvents() {
   el.navSaved.addEventListener('click', function() { state.view = 'saved'; state.page = 1; invalidateFilter(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
   el.navCompare.addEventListener('click', function() { state.view = 'compare'; render(); });
   el.navGenerator.addEventListener('click', function() { state.view = 'generator'; render(); });
+  
+  if (el.botNavAll) el.botNavAll.addEventListener('click', function() { el.navAll.click(); });
+  if (el.botNavSaved) el.botNavSaved.addEventListener('click', function() { el.navSaved.click(); });
+  if (el.botNavCompare) el.botNavCompare.addEventListener('click', function() { el.navCompare.click(); });
+  if (el.botNavGenerator) el.botNavGenerator.addEventListener('click', function() { el.navGenerator.click(); });
 
   el.clearFiltersBtn.addEventListener('click', function() {
     state.filters = { category: [], sector: [], model: [], difficulty: [], rating: [] };

@@ -45,6 +45,9 @@
     .header-left { display: flex; align-items: center; gap: 16px; }
     .logo { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-primary); }
     .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), var(--cyan)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #000; }
+    .author-credit { font-size: 13px; color: var(--text-muted); font-weight: 400; margin-left: -8px; }
+    .author-credit a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .author-credit a:hover { color: var(--accent); }
     .prompt-counter { font-size: 13px; color: var(--text-secondary); background: var(--bg-card); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 20px; }
     .header-center { display: flex; gap: 4px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 4px; }
     .nav-btn { padding: 8px 16px; border: none; background: transparent; color: var(--text-secondary); font-family: var(--font-sans); font-size: 13px; font-weight: 500; border-radius: 8px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
@@ -280,6 +283,23 @@
     .sidebar-overlay.active { display: block; }
     /* Footer */
     .footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted); position: relative; z-index: 1; }
+    
+    /* Bottom Navigation */
+    .bottom-nav {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(10,10,10,0.9); backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-color); z-index: 100;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    [data-theme="light"] .bottom-nav { background: rgba(248,249,250,0.9); }
+    .bottom-nav-btn {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      padding: 10px 0; background: transparent; border: none; color: var(--text-muted); cursor: pointer;
+      font-family: var(--font-sans); font-size: 10px; font-weight: 500; transition: all 0.2s;
+    }
+    .bottom-nav-btn.active { color: var(--accent); }
+    .bottom-nav-btn:hover:not(.active) { color: var(--text-primary); }
+    
     /* Responsive */
     @media (max-width: 1200px) { .prompt-grid { grid-template-columns: repeat(2, 1fr); } .prompt-grid.view-compact { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 900px) {
@@ -302,6 +322,16 @@
       .compare-container { grid-template-columns: 1fr; }
       .shortcuts-grid { grid-template-columns: 1fr; }
       .header-center { display: none; }
+      .main-layout { min-height: calc(100vh - var(--header-height) - 60px); }
+      .content { padding-bottom: 80px; }
+      .bottom-nav { display: flex; }
+      .header-right { gap: 4px; }
+      .icon-btn { width: 32px; height: 32px; font-size: 14px; }
+      #shortcutsBtn, #exportBtn { display: none; }
+      .logo-icon { display: none; }
+      .logo { font-size: 16px; }
+      .author-credit { font-size: 12px; margin-left: -10px; }
+      #viewGenerator > div > div:first-of-type { grid-template-columns: 1fr !important; }
     }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: transparent; }
